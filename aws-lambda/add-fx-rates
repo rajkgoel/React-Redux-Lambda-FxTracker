@@ -1,0 +1,57 @@
+from __future__ import print_function # Python 2/3 compatibility
+import boto3
+import json
+import decimal
+import uuid
+import logging
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+# Helper class to convert a DynamoDB item to JSON.
+class DecimalEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, decimal.Decimal):
+            if o % 1 > 0:
+                return float(o)
+            else:
+                return int(o)
+        return super(DecimalEncoder, self).default(o)
+        
+def respond(err, res=None):
+    return {
+        'statusCode': '400' if err else '200',
+        'body': err.message if err else json.dumps(res),
+        'headers': {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Access-Control-Allow-Origin'
+        },
+    }
+
+def put_forex(event, context):
+    dynamodb = boto3.resource('dynamodb', region_name='us-east-2') #, endpoint_url="http://localhost:8000")
+    table = dynamodb.Table('ForexRates')
+    
+    logger.info('got event{}'.format(event['body']))
+    
+    fx=json.loads(event['body'])
+    
+    forexId = str(uuid.uuid1());
+    currency1=fx['currency1']
+    currency2=fx['currency2']
+    timeStamp=fx['timeStamp']
+    rate=fx['rate']
+    
+    logger.info('Payload: Currency1: {}, Currency2: {}, TimeStamp: {}, Rate: {}'.format(currency1, currency2, timeStamp, rate))
+    response = table.put_item(
+       Item={
+            'Id': forexId,
+            'Currency1': currency1,
+            'Currency2': currency2,
+            'TimeStamp': timeStamp,
+            'Rate': rate
+        }
+    )
+    lambdaResponse = respond(None, response)
+    logger.info("Response: {}".format(lambdaResponse))
+    return lambdaResponse
