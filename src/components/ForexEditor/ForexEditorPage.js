@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+/*
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+*/
 
 class ForexEditor extends React.Component {
     constructor(props) {
@@ -51,11 +53,9 @@ class ForexEditor extends React.Component {
         const forexs = this.props.forexs.rates;
       
         const fxCurrencies = forexs.map((curr) => 
-                                <MenuItem 
-                                    value={curr.fxCurrency} 
-                                    key={curr.fxCurrency}
-                                    primaryText={curr.fxCurrency}/>
-                                );
+                                <option value={curr.fxCurrency} key={curr.fxCurrency}>
+                                    {curr.fxCurrency}
+                                </option>);
         //console.log('Inside ForexEditor.render()', this.props);
         if (this.props.addingRatesErrored)
         {
@@ -78,29 +78,38 @@ class ForexEditor extends React.Component {
         }
         
         return(
-            <div>
-                <p>Forex Editor</p>
-                <form name="form" onSubmit={this.handleAddRateClick}>
-                
-                    <SelectField name="fxCurrency" value={this.props.selectedCurrency} 
-                            floatingLabelText = "Select Fx Currency"
-                            onChange={this.handleFxCurrencyChange}>
+            <div class="w3-card-4">
+                <div class="w3-container w3-teal">
+                    <h2>Forex Editor</h2>
+                </div>
+                <form name="form" class="w3-container" onSubmit={this.handleAddRateClick}>
+                    <p>
+                    <label class="w3-text-teal">Currency-pair</label>
+                    <select name="fxCurrency" value={this.props.selectedCurrency} 
+                            onChange={this.handleFxCurrencyChange} 
+                            class="w3-select w3-border w3-round w3-light-grey">
                         {fxCurrencies}
-                    </SelectField>
+                    </select>
+                    </p> 
                     
-                    <br/>
-                    <TextField hintText="Rate is required" className="form-control" 
-                        required name="rate" />
-                    <br />
-                    
-                    <DatePicker hintText="Forex Date" 
-                        className="form-control"
-                        container="inline" mode="landscape" 
+                    <p>
+                    <label class="w3-text-teal">Rate</label>
+                    <input required class="w3-input w3-border w3-round w3-light-grey" 
+                        name="rate" id="rate" type="text" />
+                    </p>
+                    <p>
+                    <label class="w3-text-teal">Date</label>
+                    <input class="w3-input w3-border w3-round w3-light-grey" 
+                        container="inline" mode="landscape" type="date"
                         required name="dateTime" />
-                    
-                    <RaisedButton onSubmit={this.handleAddRateClick} primary={true}>
+                    </p>
+
+                    <p>
+                    <button onSubmit={this.handleAddRateClick} 
+                            class="w3-button w3-green w3-round w3-block">
                         Add Rate
-                    </RaisedButton>
+                    </button>
+                    </p>
                 </form>
                 <p><Link to={`/forexs`}>Return to Forex view</Link></p>
             </div>

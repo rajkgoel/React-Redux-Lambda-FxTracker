@@ -1,5 +1,5 @@
 export const FX_RATES_URL= "http://localhost:52698/api/fx";
-
+//export const FX_RATES_URL= "https://4sizxe2xs1.execute-api.us-east-1.amazonaws.com/Prod/fxrates";
 
 export const RATES_HAS_ERRORED = 'RATES_HAS_ERRORED';
 export const RATES_IS_LOADING = 'RATES_IS_LOADING';
