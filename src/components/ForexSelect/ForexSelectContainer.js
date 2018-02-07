@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import ForexSelect from "./FxComponents";
 import { ratesFetchData, filterRates } from '../../actions/fxrates';
+import { setPageHeader } from "../../actions/common";
 
 const mapStateToProps = (state) => {
     console.log('Inside FxComponents.mapStateToProps', state);
@@ -15,7 +16,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchData: (url) => dispatch(ratesFetchData(url)),
-        filterData: (fxCurrency) => dispatch(filterRates(fxCurrency))
+        filterData: (fxCurrency) => dispatch(filterRates(fxCurrency)),
+        setPageHeader: (pageHeader) => dispatch(setPageHeader(pageHeader))
     };
 };
 

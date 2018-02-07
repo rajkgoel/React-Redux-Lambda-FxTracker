@@ -36,8 +36,13 @@ class ForexEditor extends React.Component {
         value: 1,
       };
       handleChange = (event, index, value) => this.setState({value});
+    
+    setPageHeader() {
+        this.props.setPageHeader('Forex Editor');
+    }
 
     render() {
+        this.setPageHeader();
         if (this.props.isErrored) {
             //console.log('Inside FxComponents.render.hasErrored');
             return <p>Sorry! There was an error loading the items</p>;
@@ -79,9 +84,6 @@ class ForexEditor extends React.Component {
         
         return(
             <div class="w3-card-4">
-                <div class="w3-container w3-teal">
-                    <h2>Forex Editor</h2>
-                </div>
                 <form name="form" class="w3-container" onSubmit={this.handleAddRateClick}>
                     <p>
                     <label class="w3-text-teal">Currency-pair</label>
@@ -111,7 +113,6 @@ class ForexEditor extends React.Component {
                     </button>
                     </p>
                 </form>
-                <p><Link to={`/forexs`}>Return to Forex view</Link></p>
             </div>
         );
     }

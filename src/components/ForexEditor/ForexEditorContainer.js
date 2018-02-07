@@ -3,6 +3,7 @@ import ForexEditor from "./ForexEditorPage";
 import { connect } from 'react-redux';
 import { ratesFetchData } from '../../actions/fxrates';
 import { ratesAddRate, selectCurrency } from '../../actions/fxEditor';
+import { setPageHeader } from "../../actions/common";
 
 const mapStateToProps = (state) => {
     //console.log('Inside ForexEditor.mapStateToProps', state.rates);
@@ -26,7 +27,8 @@ const mapDispatchToProps = (dispatch) => {
         addRate: (currency1, currency2, rate, dateTime) => 
                 dispatch(ratesAddRate(currency1, currency2, rate, dateTime)),
         selectCurrency: (selectedCurrency) => 
-                dispatch(selectCurrency(selectedCurrency))
+                dispatch(selectCurrency(selectedCurrency)),
+        setPageHeader: (pageHeader) => dispatch(setPageHeader(pageHeader))
     };
 };
 

@@ -81,6 +81,10 @@ class ForexSelect extends React.Component {
         clearInterval(this.timerID); */
     }
 
+    setPageHeader() {
+        this.props.setPageHeader('Forexes');
+    }
+
     componentDidMount() {
         this.props.fetchData('http://localhost:52698/api/fx')
         /* this.timerID = setInterval(
@@ -93,6 +97,8 @@ class ForexSelect extends React.Component {
     }
 
     render(){
+        this.setPageHeader();
+
         if (this.props.isErrored) {
             return <p>Sorry! There was an error loading the rates. :-(</p>;
         }
@@ -115,20 +121,24 @@ class ForexSelect extends React.Component {
         //console.log('rendering after isLoading completed..', fxCurrencies);
         return(
             <div>
-                <p>
-                <select value={this.props.selectedFxCurrency.fxCurrency} 
-                        onChange={this.handleFxCurrencyChange}
-                        class="w3-select w3-border w3-round w3-light-grey">
-                    <option value="ALL" key="ALL">ALL</option>
-                    {fxCurrencies}
-                </select>
-                <button class="w3-button w3-green w3-round" 
-                        type="submit" onClick={this.handleRefreshClick}>Refresh</button>
-                <button class="w3-button w3-green w3-round"
-                        type="submit" onClick={this.handleStopRefresh}>Stop Auto Refresh</button>
-                </p>
-                <p><Link to={`/editor`}>Add Rates</Link></p>
-                <Forexs selectedFxCurrency={this.props.selectedFxCurrency} forexs={forexs}/>
+                <div class="w3-card-4">
+                    <p>
+                        <select value={this.props.selectedFxCurrency.fxCurrency} 
+                                onChange={this.handleFxCurrencyChange}
+                                class="w3-select w3-border w3-round w3-light-grey">
+                            <option value="ALL" key="ALL">ALL</option>
+                            {fxCurrencies}
+                        </select>
+                        <button class="w3-button w3-green w3-round" 
+                                type="submit" onClick={this.handleRefreshClick}>Refresh</button>
+                        <button class="w3-button w3-green w3-round"
+                                type="submit" onClick={this.handleStopRefresh}>Stop Auto Refresh</button>
+                    </p>
+                    <p>
+                        <Link to={`/editor`}>Add Rates</Link>
+                    </p>
+                    <Forexs selectedFxCurrency={this.props.selectedFxCurrency} forexs={forexs}/>
+                </div>
             </div>
         );
     }
