@@ -83,37 +83,36 @@ class ForexEditor extends React.Component {
         }
         
         return(
-            <div class="w3-card-4">
-                <form name="form" class="w3-container" onSubmit={this.handleAddRateClick}>
-                    <p>
-                    <label class="w3-text-teal">Currency-pair</label>
-                    <select name="fxCurrency" value={this.props.selectedCurrency} 
-                            onChange={this.handleFxCurrencyChange} 
-                            class="w3-select w3-border w3-round w3-light-grey">
-                        {fxCurrencies}
-                    </select>
-                    </p> 
-                    
-                    <p>
-                    <label class="w3-text-teal">Rate</label>
-                    <input required class="w3-input w3-border w3-round w3-light-grey" 
-                        name="rate" id="rate" type="text" />
-                    </p>
-                    <p>
-                    <label class="w3-text-teal">Date</label>
-                    <input class="w3-input w3-border w3-round w3-light-grey" 
-                        container="inline" mode="landscape" type="date"
-                        required name="dateTime" />
-                    </p>
+            <form name="form" onSubmit={this.handleAddRateClick}>
+                <p>
+                <label class="w3-text-teal">Currency-pair</label>
+                <select name="fxCurrency" value={this.props.selectedCurrency} 
+                        onChange={this.handleFxCurrencyChange} 
+                        class="w3-select w3-border w3-round w3-light-grey">
+                    {fxCurrencies}
+                </select>
+                </p> 
+                
+                <p>
+                <label class="w3-text-teal">Rate</label>
+                <input required class="w3-input w3-border w3-round w3-light-grey" 
+                    name="rate" id="rate" type="text" />
+                </p>
+                <p>
+                <label class="w3-text-teal">Date</label>
+                <input class="w3-input w3-border w3-round w3-light-grey" 
+                    container="inline" mode="landscape" type="date"
+                    required name="dateTime" />
+                </p>
 
-                    <p>
-                    <button onSubmit={this.handleAddRateClick} 
-                            class="w3-button w3-green w3-round w3-block">
-                        Add Rate
-                    </button>
-                    </p>
-                </form>
-            </div>
+                <p>
+                <button onSubmit={this.handleAddRateClick} 
+                        class="w3-button w3-green w3-round w3-block">
+                    Add Rate
+                </button>
+                </p>
+            </form>
+        
         );
     }
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import C3Chart from 'react-c3js';
 import 'c3/c3.css';
-import { Link } from 'react-router-dom';
 
 class Forex extends React.Component{
     render(){
@@ -121,24 +120,32 @@ class ForexSelect extends React.Component {
         //console.log('rendering after isLoading completed..', fxCurrencies);
         return(
             <div>
-                <div class="w3-card-4">
-                    <p>
-                        <select value={this.props.selectedFxCurrency.fxCurrency} 
-                                onChange={this.handleFxCurrencyChange}
-                                class="w3-select w3-border w3-round w3-light-grey">
-                            <option value="ALL" key="ALL">ALL</option>
-                            {fxCurrencies}
-                        </select>
-                        <button class="w3-button w3-green w3-round" 
-                                type="submit" onClick={this.handleRefreshClick}>Refresh</button>
-                        <button class="w3-button w3-green w3-round"
-                                type="submit" onClick={this.handleStopRefresh}>Stop Auto Refresh</button>
-                    </p>
-                    <p>
-                        <Link to={`/editor`}>Add Rates</Link>
-                    </p>
-                    <Forexs selectedFxCurrency={this.props.selectedFxCurrency} forexs={forexs}/>
+            <div class="w3-row">
+                <div class="w3-col">
+                    <select value={this.props.selectedFxCurrency.fxCurrency} 
+                            onChange={this.handleFxCurrencyChange}
+                            class="w3-select w3-border w3-round w3-light-grey">
+                        <option value="ALL" key="ALL">ALL</option>
+                        {fxCurrencies}
+                    </select>
                 </div>
+            </div>
+            <div class="w3-row">
+                <div class="w3-col s5 w3-margin-left w3-margin-right w3-margin-top">
+                    <button class="w3-button w3-green w3-round w3-block" 
+                        type="submit" onClick={this.handleRefreshClick}>Refresh</button>
+                </div>
+                <div class="w3-col s1 w3-margin">
+                    
+                </div>
+                <div class="w3-col s5 w3-margin-left w3-margin-top">
+                    <button class="w3-button w3-green w3-round w3-block"
+                        type="submit" onClick={this.handleStopRefresh}>Stop Auto Refresh</button>
+                </div>
+            </div>
+            <div class="w3-row">
+                <Forexs selectedFxCurrency={this.props.selectedFxCurrency} forexs={forexs}/>
+            </div>
             </div>
         );
     }
