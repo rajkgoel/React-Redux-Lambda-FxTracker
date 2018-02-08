@@ -23,7 +23,7 @@ export function ratesAddRate(currency1, currency2, rate, dateTime) {
           }*/
 
           console.log("Action Adding Rates - ", currency1, currency2, rate, dateTime);
-        axios.put(FX_RATES_URL, 
+        axios.post(FX_RATES_URL, 
                     { currency1: currency1, currency2: currency2, rate: rate, timeStamp: dateTime })
             .then((response) => {
                 dispatch(addingRates(false));

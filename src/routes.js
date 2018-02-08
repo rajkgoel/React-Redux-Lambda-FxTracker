@@ -13,7 +13,7 @@ const Routes = () => (
     <ConnectedRouter history={history}>
         <div>
             <HeaderContainer/>
-            <div class="w3-card-4 w3-container" >
+            <div className="w3-card-4 w3-container" >
                 <Switch>
                     <Route path="/forexs" component={ForexSelectContainer} />
                     <Route path="/editor" component={ForexEditorContainer} />

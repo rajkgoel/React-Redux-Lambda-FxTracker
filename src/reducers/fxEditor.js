@@ -47,7 +47,7 @@ function addingRatesSuccess(state=false, action) {
 }
 
 function addingRates(state=false, action) {
-    console.log('Inside reducer->addingRates', state, action);
+    //console.log('Inside reducer->addingRates', state, action);
     switch (action.type) {
         case 'ADDING_RATES':
             return action.addingRates;

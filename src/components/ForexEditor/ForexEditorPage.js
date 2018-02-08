@@ -14,15 +14,19 @@ class ForexEditor extends React.Component {
         this.handleAddRateClick = this.handleAddRateClick.bind(this);
     }
 
+    componentWillMount(){
+        this.props.fetchRates();
+    }
+
     componentDidMount() {
         //console.log('Inside ForexEditor.componentDidMount');
-        this.props.fetchRates();
+        
         //console.log("Populated ForexSelect:" + this.props.forexs); //this.props.forexs);
     }
 
     handleAddRateClick = (event) => {
         event.preventDefault();
-        console.log("Inside handleAddRateClick", event)
+        //console.log("Inside handleAddRateClick", event)
         let currencies = String(event.target.fxCurrency.value).split("-");
         this.props.addRate(currencies[0], currencies[1], event.target.rate.value, event.target.dateTime.value);
     }
@@ -54,7 +58,7 @@ class ForexEditor extends React.Component {
             return <p>Loading Rates…please wait for a moment.....</p>; 
         }
 
-        console.log('Inside ForexEditor.render', this.props.forexs);
+        //console.log('Inside ForexEditor.render', this.props.forexs);
         const forexs = this.props.forexs.rates;
       
         const fxCurrencies = forexs.map((curr) => 
@@ -74,7 +78,7 @@ class ForexEditor extends React.Component {
         }
 
         if (this.props.addingRatesSuccess) {
-            console.log('Inside ForexEditor.addingRatesSuccess');
+            //console.log('Inside ForexEditor.addingRatesSuccess');
             return( 
             <div>Rates were added successfully.....
                 <p><Link to={`/forexs`}>Return to Forex view</Link></p>
@@ -85,29 +89,29 @@ class ForexEditor extends React.Component {
         return(
             <form name="form" onSubmit={this.handleAddRateClick}>
                 <p>
-                <label class="w3-text-teal">Currency-pair</label>
+                <label className="w3-text-cyan">Currency-pair</label>
                 <select name="fxCurrency" value={this.props.selectedCurrency} 
                         onChange={this.handleFxCurrencyChange} 
-                        class="w3-select w3-border w3-round w3-light-grey">
+                        className="w3-select w3-border w3-round w3-light-grey">
                     {fxCurrencies}
                 </select>
                 </p> 
                 
                 <p>
-                <label class="w3-text-teal">Rate</label>
-                <input required class="w3-input w3-border w3-round w3-light-grey" 
+                <label className="w3-text-cyan">Rate</label>
+                <input required className="w3-input w3-border w3-round w3-light-grey" 
                     name="rate" id="rate" type="text" />
                 </p>
                 <p>
-                <label class="w3-text-teal">Date</label>
-                <input class="w3-input w3-border w3-round w3-light-grey" 
+                <label className="w3-text-cyan">Date</label>
+                <input className="w3-input w3-border w3-round w3-light-grey" 
                     container="inline" mode="landscape" type="date"
                     required name="dateTime" />
                 </p>
 
                 <p>
                 <button onSubmit={this.handleAddRateClick} 
-                        class="w3-button w3-green w3-round w3-block">
+                        className="w3-button w3-blue w3-round w3-block">
                     Add Rate
                 </button>
                 </p>

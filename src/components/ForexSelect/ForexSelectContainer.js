@@ -4,7 +4,7 @@ import { ratesFetchData, filterRates } from '../../actions/fxrates';
 import { setPageHeader } from "../../actions/common";
 
 const mapStateToProps = (state) => {
-    console.log('Inside FxComponents.mapStateToProps', state);
+    //console.log('Inside FxComponents.mapStateToProps', state);
     return {
         forexs: state.forexApp.rates,
         isErrored: state.forexApp.ratesHasErrored,

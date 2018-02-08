@@ -1,16 +1,21 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import image from '../../images/Forex.jpg';
+
+var styles = {
+    backgroundImage: 'url('+image+')'
+    };
 
 class Header extends React.Component{
     render() {
         return (
             <div>
-                <div className="w3-bar w3-teal">
-                    <p><Link to={`/`} class="w3-bar-item w3-button">Home</Link></p>
-                    <p><Link to={`/forexs`} class="w3-bar-item w3-button">Forex view</Link></p>
-                    <p><Link to={`/editor`} class="w3-bar-item w3-button">Forex Editor view</Link></p>
+                <div className="w3-bar w3-indigo">
+                    <p><Link to={`/`} className="w3-bar-item w3-button">Home</Link></p>
+                    <p><Link to={`/forexs`} className="w3-bar-item w3-button">Forex view</Link></p>
+                    <p><Link to={`/editor`} className="w3-bar-item w3-button">Forex Editor view</Link></p>
                 </div>
-                <div class="w3-container w3-teal">
+                <div className="w3-container w3-blue" style={styles}>
                     <h2>{this.props.pageHeader}</h2>
                 </div>
             </div>
